@@ -1,0 +1,43 @@
+{%include 'header.html'%}
+
+
+{% block content %}
+  <h1>Today's Schedule</h1>
+  
+  <form method="POST">
+    {% csrf_token %}
+    <label for="selected_date">Select Date:</label>
+    <input type="date" id="selected_date" name="selected_date" value="{{ selected_date }}">
+    <button type="submit">Show Schedule</button>
+  </form>
+  
+  <h2>Schedule for {{ selected_date }}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Doctor</th>
+        <th>Time</th>
+        <th>Entered By</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in schedule %}
+      <tr>
+        <td>{{ appointment.doctor }}</td>
+        <td>{{ appointment.time }}</td>
+        <td>{{ appointment.entered_by }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3">No appointments found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  
+  <a href="{%url 'dashboard'%}">dashboard</a>
+{% endblock %}
+
+{% include 'footer.html' %}
+

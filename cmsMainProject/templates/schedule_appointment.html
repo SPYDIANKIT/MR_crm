@@ -1,0 +1,14 @@
+{% include 'header.html' %}
+
+{% block content %}
+    <h1>Schedule Appointment</h1>
+    <div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render the form fields as paragraphs -->
+        <button type="submit">Schedule</button>  <!-- Submit button for the form -->
+    </form>
+    <a href="{%url 'dashboard'%}">dashboard</a>
+</div>
+{% endblock %}
+{% include 'footer.html' %}

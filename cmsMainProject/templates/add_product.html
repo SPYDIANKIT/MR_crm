@@ -1,0 +1,15 @@
+{% include 'header.html' %}
+{%block content%}
+
+    <h1>Add Product</h1>
+    <div class="box-container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Product</button>
+        
+        <a href="{%url 'dashboard'%}">dashboard</a>
+        </div>
+    </form>
+{% endblock %}
+{% include 'footer.html' %}

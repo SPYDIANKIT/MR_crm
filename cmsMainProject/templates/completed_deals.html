@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Completed Deals</title>
+</head>
+<body>
+    <h1>Completed Deals</h1>
+    <ul>
+        {% for deal in completed_deals %}
+            <li>{{ deal.doctor }} - {{ deal.product }} (Quantity: {{ deal.quantity_ordered }})</li>
+        {% empty %}
+            <li>No completed deals yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

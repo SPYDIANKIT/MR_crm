@@ -1,0 +1,74 @@
+{% include 'header.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> {% comment %}#bootstrap  css cdn  {% endcomment %}
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> {% comment %}  # bootstrao js cdn  {% endcomment %}
+</head>
+
+<body>
+    <nav>
+        <div class="container" display: inline-block; padding: 10px;background-color: #f5f5f5;color: #808080;>
+            <div class="menu d-flex" >
+              <div class="menu-item mr-2"><a href="{% url 'add_product' %}" >Add_Product</a></div>
+              <div class="menu-item mr-2"><a href="{% url 'product_list' %}"> Products</a></div>
+              <div class="menu-item mr-2"><a href="{% url 'add_doctor' %}">Add_Doctor</a></div>
+              <div class="menu-item mr-2"><a href="{%url 'schedule_appointment'%}">Schedule_Doctor_Appointment</a></div>
+              
+              <div class="menu-item mr-2"><a href="{%url 'todays_schedule'%}">Today's_Schedule</a></div>
+              {% comment %} <div class="menu-item mr-2"><a href="{%url 'appointment_status'%}">vists_done </a></div> {% endcomment %}
+              <div class="menu-item mr-2"><a href="{%url 'enter_deal_details'%}">Deals_Details</a></div>
+            </div>
+          </div>
+         <div class="appointments-count">
+        <p>Number of appointments scheduled for today: <span id="appointments-count-value">{{ appointments_count }}</span></p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch and update the appointments count using AJAX
+            $.ajax({
+                url: "{% url 'get_appointments_count' %}",
+                dataType: "json",
+                success: function(data) {
+                    $("#appointments-count-value").text(data.appointments_count);
+                },
+                error: function(error) {
+                    console.log("Error fetching appointments count:", error);
+                }
+            });
+
+            // Update the appointments count every 10 seconds
+            setInterval(function() {
+                $.ajax({
+                    url: "{% url 'get_appointments_count' %}",
+                    dataType: "json",
+                    success: function(data) {
+                        $("#appointments-count-value").text(data.appointments_count);
+                    },
+                    error: function(error) {
+                        console.log("Error fetching appointments count:", error);
+                    }
+                });
+            }, 10000); // 10 seconds interval
+        });
+    </script>
+  </nav>
+
+  <main>
+    
+    <h1>Welcome to the Dashboard</h1>
+    
+  </main>
+
+
+x
+</body>
+</html>
+{% include 'footer.html' %}

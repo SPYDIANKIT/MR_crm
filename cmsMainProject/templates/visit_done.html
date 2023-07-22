@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visit Done</title>
+</head>
+<body>
+    <h1>Completed Deals</h1>
+    <ul>
+        {% for deal in completed_deals %}
+            <li>{{ deal.doctor }} - {{ deal.product }} (Quantity: {{ deal.quantity_ordered }})</li>
+        {% empty %}
+            <li>No completed deals yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Completed Doctor Visits</h1>
+    <ul>
+        {% for visit in completed_visits %}
+            <li>
+                {{ visit.doctor }} - 
+                {% if visit.is_successful %}
+                    <strong>Successful</strong>
+                {% else %}
+                    <strong>Not Successful</strong>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No completed doctor visits yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Mark Visit as Successful</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Mark as Successful">
+    </form>
+</body>
+</html>
+    

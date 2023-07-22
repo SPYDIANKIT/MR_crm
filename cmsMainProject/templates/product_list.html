@@ -1,0 +1,30 @@
+{% include 'header.html' %}
+
+
+{% block content %}
+    <h1>Product List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Product Name</th>
+                <th>Company Name</th>
+                <th>Product Price</th>
+                <th>Entered By</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item  in products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.Product_Name}}</td>
+                <td>{{ item.Company_Name}}</td>
+                <td>{{ item.Product_Price }}</td>
+                <td>{{ item.Entered_By.first_name }} {{ item.Entered_By.last_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{%url 'dashboard'%}">dashboard</a>
+{% endblock  %}
+{% include 'footer.html' %}

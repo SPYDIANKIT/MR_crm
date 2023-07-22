@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Web Page</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#"><img src="https://t3.ftcdn.net/jpg/01/06/33/74/360_F_106337464_PqrDoCy2HhtDr6ezOGq13hvpVFcMGpQV.jpg" alt="Pharma Logo"style="max-width: 100px; height: auto;"></a>
+       
+        <!-- Navbar Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <p><strong>Hey!! {{ request.user }}</strong></p>
+        <!-- Navbar Collapse -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-nav ml-auto">
+            
+            <!-- Login Button -->
+            <div class="nav-item">
+              <a class="nav-link" href="{% url "dashboard" %}">dashboard</a>
+            </div>
+
+            {% comment %} <div class="nav-item">
+                <a class="nav-link" href="#">about us</a>
+            </div> 
+            <div class="nav-item">
+                <a class="nav-link" href="#">contact us</a>
+            </div>
+           
+            <div class="nav-item">
+                <a class="nav-link" href="#">Schedule</a>
+            </div> 
+             <div class="nav-item">
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search product </button>
+              </form>
+            </div> {% endcomment %}
+            <div class="nav-item">
+                <a class="nav-item nav-link"href="{% url 'login' %}">Employee Login</a>                
+            </div>
+
+            <div>
+              <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin Login</a>
+            </div>
+            
+            <div class="nav-item">
+              {% include 'logout.html' %}             
+            </div>
+            <!-- Schedule Link -->
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+    {# Include the log out button template in the header #}
+
+</body>
+</html>
+  
